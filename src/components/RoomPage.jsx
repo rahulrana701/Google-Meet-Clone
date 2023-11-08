@@ -33,7 +33,7 @@ export default function RoomPage() {
   const [isFullScreen1, setIsFullScreen1] = useState(false);
   const [isFullScreen2, setIsFullScreen2] = useState(false);
 
-
+  let negotiated = false;
 
   const handleExit = () => {
     roomsocket.emit('disconnected');
@@ -57,18 +57,14 @@ export default function RoomPage() {
   }
 
   const handleScreenShare = async () => {
+
     navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(screenStream => {
       const screenTrack = screenStream.getTracks()[0];
-
-      // Replace the user's camera track with the screen-sharing track in your peer connection
       const videoSenders = pc.getSenders().filter(sender => sender.track && sender.track.kind === 'video');
       if (videoSenders.length > 0) {
         videoSenders[0].replaceTrack(screenTrack);
       }
-
-      // Handle the screen-sharing track ending event
       screenTrack.onended = function () {
-        // Replace the screen-sharing track with the user's camera track in your peer connection
         if (videoSenders.length > 0) {
           videoSenders[0].replaceTrack(mystream.getVideoTracks()[0]);
         }
@@ -161,26 +157,30 @@ export default function RoomPage() {
   }, [roomsocket, participants]);
 
   useEffect(() => {
-    const handleicecandidates = async () => {
-      pc.onicecandidate = ({ candidate }) => {
-        roomsocket.emit("iceCandidate", { candidate });
-      }
+     const handleicecandidates = async () => {
+    pc.onicecandidate = ({ candidate }) => {
+      roomsocket.emit("iceCandidate", { candidate });
+    }
 
-      if (mystream && mystream.getTracks().length > 0) {
-        mystream.getTracks().forEach((track) => {
-          pc.addTrack(track, mystream);
-        });
-      }
+    if (mystream && mystream.getTracks().length > 0) {
+      mystream.getTracks().forEach((track) => {
+        pc.addTrack(track, mystream);
+      });
+    }
 
-      try {
+    try {
+      // Check if the peer connection has already been negotiated
+      if (!negotiated) {
         await pc.setLocalDescription(await pc.createOffer());
         console.log({ aa: pc.localDescription });
         roomsocket.emit("localDescription", { description: pc.localDescription });
-      } catch (err) {
-        console.log({ msg: err?.message });
+        negotiated = true;
       }
+    } catch (err) {
+      console.log({ msg: err?.message });
     }
-    handleicecandidates();
+  }
+  handleicecandidates();
   }, [mystream, roomsocket])
 
   useEffect(() => {
