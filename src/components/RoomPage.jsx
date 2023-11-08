@@ -158,7 +158,7 @@ export default function RoomPage() {
       roomsocket.off("userleft", handleUserLeft);
       roomsocket.off("recieve", handleMessage);
     };
-  }, []);
+  }, [roomsocket, participants]);
 
   useEffect(() => {
     const handleicecandidates = async () => {
@@ -181,7 +181,7 @@ export default function RoomPage() {
       }
     }
     handleicecandidates();
-  }, [])
+  }, [mystream, roomsocket])
 
   useEffect(() => {
     const handlevideo = async () => {
