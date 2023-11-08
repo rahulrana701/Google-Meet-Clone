@@ -201,7 +201,7 @@ input:focus {
 
 .video-section-1 {
   position: relative;
-  max-width: 600px;
+  max-width: 722px;
   padding-top: 30px;
   /* display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); */
@@ -213,14 +213,21 @@ input:focus {
   padding-bottom: 50px;
 }
 
-.video-section-1 div {
-  flex-shrink: 1;
-  max-height: 300px;
-  width: 200px;
-}
 .video-section-1 video {
   border: 2px solid rgb(162, 191, 254);
   border-radius: 23px;
+  flex-shrink: 1;
+  max-height: 300px;
+  max-width: 400px;
+  min-width: 250px;
+}
+
+.video-player {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .video-section-2 {
