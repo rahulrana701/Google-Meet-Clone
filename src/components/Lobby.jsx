@@ -18,7 +18,6 @@ export default function Lobby() {
     }
 
     useEffect(() => {
-
         const handleUserJoinedEmit = (data) => {
             const { roomno } = data;
             navigate(`/room/${roomno}`);

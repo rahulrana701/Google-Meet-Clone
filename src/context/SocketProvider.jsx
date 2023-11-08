@@ -8,7 +8,8 @@ export const UseSocket = () => useContext(SocketContext);
 
 
 export default function SocketProvider(props) {
-    const socket = io('http://localhost:8000')
+
+    const socket = io(import.meta.env.VITE_BACKEND_URL)
     return (
         <SocketContext.Provider value={socket}>
             {props.children}
