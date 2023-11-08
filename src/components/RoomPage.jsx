@@ -59,11 +59,16 @@ export default function RoomPage() {
   const handleScreenShare = async () => {
     navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(screenStream => {
       const screenTrack = screenStream.getTracks()[0];
+
+      // Replace the user's camera track with the screen-sharing track in your peer connection
       const videoSenders = pc.getSenders().filter(sender => sender.track && sender.track.kind === 'video');
       if (videoSenders.length > 0) {
         videoSenders[0].replaceTrack(screenTrack);
       }
+
+      // Handle the screen-sharing track ending event
       screenTrack.onended = function () {
+        // Replace the screen-sharing track with the user's camera track in your peer connection
         if (videoSenders.length > 0) {
           videoSenders[0].replaceTrack(mystream.getVideoTracks()[0]);
         }
@@ -153,7 +158,7 @@ export default function RoomPage() {
       roomsocket.off("userleft", handleUserLeft);
       roomsocket.off("recieve", handleMessage);
     };
-  }, [roomsocket, participants]);
+  }, []);
 
   useEffect(() => {
     const handleicecandidates = async () => {
@@ -176,7 +181,7 @@ export default function RoomPage() {
       }
     }
     handleicecandidates();
-  }, [mystream, roomsocket])
+  }, [])
 
   useEffect(() => {
     const handlevideo = async () => {
