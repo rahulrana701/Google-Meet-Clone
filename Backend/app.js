@@ -100,7 +100,7 @@ io.on('connection', (socket) => {
             });
         }                                                                                                                                                           
     });
-    socket.on('disconnected', () => {
+    socket.on('disconnect', () => {
         const userData = users[socket.id];
         if (userData) {
             io.to(userData.room).emit('userleft', userData.name);

@@ -9,6 +9,7 @@ import exit from "../images/exit.png";
 import { UseSocket } from "../context/SocketProvider";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ReactPlayer from 'react-player';
 
 
 let pc = new RTCPeerConnection({
@@ -30,13 +31,11 @@ export default function RoomPage() {
   const [remoteVideoStream, setRemoteVideoStream] = useState(null);
   const [handlingcamera, sethandlingcamera] = useState(true);
   const [handlingaudio, sethandlingaudio] = useState(true);
-  const [isFullScreen1, setIsFullScreen1] = useState(false);
-  const [isFullScreen2, setIsFullScreen2] = useState(false);
-
-
+  const myVideoRef = useRef();
+  const myVideoRef2 = useRef();
 
   const handleExit = () => {
-    roomsocket.emit('disconnected');
+    roomsocket.emit('disconnect');
     navigate('/')
   }
 
@@ -91,39 +90,37 @@ export default function RoomPage() {
     messageContainer.current.appendChild(messageElement);
   }
 
-  const toggleFullScreen = (videoElementId) => {
-    const videoElement = document.getElementById(videoElementId);
-
-    if (document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement || document.msFullscreenElement) {
-      // Document is in full-screen mode, so exit full-screen.
-      if (document.exitFullscreen) {
-        document.exitFullscreen();
-      } else if (document.mozCancelFullScreen) {
-        document.mozCancelFullScreen();
-      } else if (document.webkitExitFullscreen) {
-        document.webkitExitFullscreen();
-      } else if (document.msExitFullscreen) {
-        document.msExitFullscreen();
+  const toggleReactPlayerFullScreen = () => {
+    const player = myVideoRef.current.getInternalPlayer(); // Get the underlying video element
+    if (player) {
+      if (player.requestFullscreen) {
+        player.requestFullscreen();
+      } else if (player.mozRequestFullScreen) {
+        player.mozRequestFullScreen();
+      } else if (player.webkitRequestFullscreen) {
+        player.webkitRequestFullscreen();
+      } else if (player.msRequestFullscreen) {
+        player.msRequestFullscreen();
       }
-    } else {
-      // Document is not in full-screen mode, so request full-screen on the video element.
-      if (videoElement.requestFullscreen) {
-        videoElement.requestFullscreen();
-      } else if (videoElement.mozRequestFullScreen) {
-        videoElement.mozRequestFullScreen();
-      } else if (videoElement.webkitRequestFullscreen) {
-        videoElement.webkitRequestFullscreen();
-      } else if (videoElement.msRequestFullscreen) {
-        videoElement.msRequestFullscreen();
-      }
-    }
-
-    if (videoElementId === "video1") {
-      setIsFullScreen1(!isFullScreen1);
-    } else if (videoElementId === "video2") {
-      setIsFullScreen2(!isFullScreen2);
     }
   };
+
+
+  const toggleReactPlayerFullScreen2 = () => {
+    const player = myVideoRef2.current.getInternalPlayer(); // Get the underlying video element for the second video
+    if (player) {
+      if (player.requestFullscreen) {
+        player.requestFullscreen();
+      } else if (player.mozRequestFullScreen) {
+        player.mozRequestFullScreen();
+      } else if (player.webkitRequestFullscreen) {
+        player.webkitRequestFullscreen();
+      } else if (player.msRequestFullscreen) {
+        player.msRequestFullscreen();
+      }
+    }
+  };
+
   useEffect(() => {
     const handleParticipants = (name) => {
       if (!participants.includes(name)) {
@@ -251,8 +248,22 @@ export default function RoomPage() {
 
         <div className="video-section">
           <div className="video-section-1">
-            {mystream && <video id="video1" onClick={() => toggleFullScreen("video1")} ref={(videoRef) => { if (videoRef) videoRef.srcObject = mystream; }} autoPlay/>}
-            {remoteVideoStream && <video id="video2" onClick={() => toggleFullScreen("video2")} ref={(videoRef) => { if (videoRef) videoRef.srcObject = remoteVideoStream; }} autoPlay />}
+            {mystream && (
+              <ReactPlayer
+                ref={myVideoRef}
+                url={mystream}
+                playing={true}
+                onClick={toggleReactPlayerFullScreen}
+              />
+            )}
+            {remoteVideoStream && (
+              <ReactPlayer
+                ref={myVideoRef2}
+                url={remoteVideoStream}
+                playing={true}
+                onClick={toggleReactPlayerFullScreen2}
+              />
+            )}
           </div>
           <div className="video-section-2">
             <img src={handlingaudio ? micoon : micoff} onClick={handleaudio} />

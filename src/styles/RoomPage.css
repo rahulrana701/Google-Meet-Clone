@@ -213,21 +213,17 @@ input:focus {
   padding-bottom: 50px;
 }
 
-.video-section-1 video {
-  border: 2px solid rgb(162, 191, 254);
-  border-radius: 23px;
+.video-section-1 div {
   flex-shrink: 1;
   max-height: 300px;
   max-width: 400px;
   min-width: 250px;
 }
 
-.video-player {
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
+
+.video-section-1 video {
+  border: 2px solid rgb(162, 191, 254);
+  border-radius: 23px;
 }
 
 .video-section-2 {
