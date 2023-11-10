@@ -15,7 +15,7 @@ import ReactPlayer from 'react-player';
 let pc = new RTCPeerConnection({
   iceServers: [
     {
-      urls: "stun:stun.l.google.com:19302",
+      urls: "stun:stun.stunprotocol.org ",
     },
   ],
 });
