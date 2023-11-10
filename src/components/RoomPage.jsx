@@ -5,10 +5,8 @@ import micoon from "../images/micon.png";
 import cameraoff from '../images/cameraoff.png'
 import cameraon from "../images/cameraon.png";
 import screenshare from "../images/screenshare.png";
-import exit from "../images/exit.png";
 import { UseSocket } from "../context/SocketProvider";
 import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import ReactPlayer from 'react-player';
 
 
@@ -22,7 +20,7 @@ let pc = new RTCPeerConnection({
 
 export default function RoomPage() {
 
-  const navigate = useNavigate();
+
   const roomsocket = UseSocket();
   const [participants, setParticipants] = useState([]);
   const [messageinput, setmessageinput] = useState('');
@@ -34,10 +32,6 @@ export default function RoomPage() {
   const myVideoRef = useRef();
   const myVideoRef2 = useRef();
 
-  const handleExit = () => {
-    roomsocket.emit('disconnect');
-    navigate('/')
-  }
 
   const handleaudio = () => {
     sethandlingaudio((prevState) => !prevState);
@@ -269,7 +263,6 @@ export default function RoomPage() {
             <img src={handlingaudio ? micoon : micoff} onClick={handleaudio} />
             <img src={handlingcamera ? cameraon : cameraoff} onClick={handlecamera} />
             <img src={screenshare} onClick={handleScreenShare} />
-            <img src={exit} onClick={handleExit} />
           </div>
         </div>
 
