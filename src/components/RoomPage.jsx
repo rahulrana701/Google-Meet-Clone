@@ -13,26 +13,34 @@ import { useEffect, useRef, useState } from "react";
 import ReactPlayer from 'react-player';
 
 var configuration = {};
+let pc; // Declare pc variable outside the block
 
 // for production
 (async () => {
-  const response = await fetch("https://rrturnserver.metered.live/api/v1/turn/credentials?apiKey=c6ff3a42c9063dc86cf2e8b90ff6e8c99b33");
-  const iceServers = await response.json();
-  configuration.iceServers = iceServers
+  try {
+    const response = await fetch("https://rrturnserver.metered.live/api/v1/turn/credentials?apiKey=c6ff3a42c9063dc86cf2e8b90ff6e8c99b33");
+    const iceServers = await response.json();
+    configuration.iceServers = iceServers;
+
+    pc = new RTCPeerConnection(configuration); // Assign value to pc inside the block
+
+  } catch (error) {
+    console.error("Error fetching TURN server credentials:", error);
+  }
 })();
 
-let pc = new RTCPeerConnection(
+// let pc = new RTCPeerConnection(
 
-  configuration
-  //   {
-  //   // iceServers: [  for development use 
-  //   //   {
-  //   //     urls: "stun:stun.stunprotocol.org ",
-  //   //   },
-  //   // ],
+//   configuration
+//   //   {
+//   //   // iceServers: [  for development use 
+//   //   //   {
+//   //   //     urls: "stun:stun.stunprotocol.org ",
+//   //   //   },
+//   //   // ],
 
-  // }
-);
+//   // }
+// );
 
 export default function RoomPage() {
 
