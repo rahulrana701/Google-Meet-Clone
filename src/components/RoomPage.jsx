@@ -5,6 +5,9 @@ import micoon from "../images/micon.png";
 import cameraoff from '../images/cameraoff.png'
 import cameraon from "../images/cameraon.png";
 import screenshare from "../images/screenshare.png";
+import chat from "../images/chat.png"
+import cross from "../images/cross.png"
+import participantimg from "../images/participants.png"
 import { UseSocket } from "../context/SocketProvider";
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from 'react-player';
@@ -32,7 +35,46 @@ export default function RoomPage() {
   const myVideoRef = useRef();
   const myVideoRef2 = useRef();
 
+  const handleclosechat = () => {
+    const closechat = document.querySelector('.show-chat');
+    closechat.style.display = 'none';
 
+    const a = document.querySelector('.show-chat');
+    if (a.classList.contains('show-chat')) {
+      a.classList.remove('show-chat');
+      a.classList.add('chat-section');
+    }
+    const b = document.querySelector('.show-chat-section-heading');
+    if (b.classList.contains('show-chat-section-heading')) {
+      b.classList.remove('show-chat-section-heading');
+      b.classList.add('chat-section-heading');
+    }
+    const c = document.querySelector('.show-actual-chat');
+    if (c.classList.contains('show-actual-chat')) {
+      c.classList.remove('show-actual-chat');
+      c.classList.add('actual-chat');
+    }
+    const d = document.querySelector('.show-actual-chat-2');
+    if (d.classList.contains('show-actual-chat-2')) {
+      d.classList.remove('show-actual-chat-2');
+      d.classList.add('actual-chat-2');
+    }
+    const e = document.querySelector('.show-chat-section-input');
+    if (e.classList.contains('show-chat-section-input')) {
+      e.classList.remove('show-chat-section-input');
+      e.classList.add('chat-section-input');
+    }
+    const f = document.querySelector('.show-merainput');
+    if (f.classList.contains('show-merainput')) {
+      f.classList.remove('show-merainput');
+      f.classList.add('merainput');
+    }
+    const g = document.querySelector('.show-merabutton');
+    if (g.classList.contains('show-merabutton')) {
+      g.classList.remove('show-merabutton');
+      g.classList.add('merabutton');
+    }
+  }
   const handleaudio = () => {
     sethandlingaudio((prevState) => !prevState);
     const audioTracks = mystream.getAudioTracks();
@@ -53,15 +95,12 @@ export default function RoomPage() {
     navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(screenStream => {
       const screenTrack = screenStream.getTracks()[0];
 
-      // Replace the user's camera track with the screen-sharing track in your peer connection
       const videoSenders = pc.getSenders().filter(sender => sender.track && sender.track.kind === 'video');
       if (videoSenders.length > 0) {
         videoSenders[0].replaceTrack(screenTrack);
       }
 
-      // Handle the screen-sharing track ending event
       screenTrack.onended = function () {
-        // Replace the screen-sharing track with the user's camera track in your peer connection
         if (videoSenders.length > 0) {
           videoSenders[0].replaceTrack(mystream.getVideoTracks()[0]);
         }
@@ -114,6 +153,49 @@ export default function RoomPage() {
       }
     }
   };
+
+  const handleshowchat = () => {
+    const a = document.querySelector('.chat-section');
+    a.style.display='block'
+    if (a.classList.contains('chat-section')) {
+      a.classList.remove('chat-section');
+      a.classList.add('show-chat');
+    }
+    const b = document.querySelector('.chat-section-heading');
+    if (b.classList.contains('chat-section-heading')) {
+      b.classList.remove('chat-section-heading');
+      b.classList.add('show-chat-section-heading');
+    }
+    const c = document.querySelector('.actual-chat');
+    if (c.classList.contains('actual-chat')) {
+      c.classList.remove('actual-chat');
+      c.classList.add('show-actual-chat');
+    }
+    const d = document.querySelector('.actual-chat-2');
+    if (d.classList.contains('actual-chat-2')) {
+      d.classList.remove('actual-chat-2');
+      d.classList.add('show-actual-chat-2');
+    }
+    const e = document.querySelector('.chat-section-input');
+    if (e.classList.contains('chat-section-input')) {
+      e.classList.remove('chat-section-input');
+      e.classList.add('show-chat-section-input');
+    }
+    const f = document.querySelector('.merainput');
+    if (f.classList.contains('merainput')) {
+      f.classList.remove('merainput');
+      f.classList.add('show-merainput');
+    }
+    const g = document.querySelector('.merabutton');
+    if (g.classList.contains('merabutton')) {
+      g.classList.remove('merabutton');
+      g.classList.add('show-merabutton');
+    }
+  }
+  const handleshowparticipants = () => {
+    const partici = document.querySelector('.show-participants');
+    partici.classList.toggle('show');
+  }
 
   useEffect(() => {
     const handleParticipants = (name) => {
@@ -263,12 +345,15 @@ export default function RoomPage() {
             <img src={handlingaudio ? micoon : micoff} onClick={handleaudio} />
             <img src={handlingcamera ? cameraon : cameraoff} onClick={handlecamera} />
             <img src={screenshare} onClick={handleScreenShare} />
+            <img src={chat} onClick={handleshowchat} className="video-section-2-img" />
+            <img src={participantimg} onClick={handleshowparticipants} className="video-section-2-img" />
           </div>
         </div>
 
         <div className="chat-section">
           <div className="chat-section-heading">
             <h2>CHAT SECTION</h2>
+            <img className="crossimg" src={cross} onClick={handleclosechat} />
           </div>
           <div className="actual-chat">
             {participants.map((name, index) => (
@@ -279,10 +364,48 @@ export default function RoomPage() {
           </div>
           <div className="chat-section-input">
             <input className="merainput" value={messageinput} onChange={(e) => { setmessageinput(e.target.value) }} type="text" name="" placeholder="ENTER YOUR MESSAGE" />
-            <button onClick={handleSendMessage}>send</button>
+            <button className="merabutton" onClick={handleSendMessage}>send</button>
           </div>
         </div>
       </div>
+
+
+      <div className="show-participants">
+        <div className="show-participants-border">
+          <div className="show-participants-section-heading">
+            <h2>PARTICIPANTS</h2>
+          </div>
+          <div className="show-participant-name">
+            {participants.map((name, index) => (
+              <p className="show-single-participant-name" key={index}>
+                {name}
+              </p>
+            ))}
+          </div>
+        </div>
+      </div>
+
+
+      {/* <div className="show-chat">
+        <div className="show-chat-border">
+          <div className="show-chat-section-heading">
+            <h2>CHAT SECTION</h2>
+            <img src={cross} onClick={handleclosechat} />
+          </div>
+          <div className="show-actual-chat">
+            {participants.map((name, index) => (
+              <h4 key={index}>{name} joined the chat 🎉 🎉</h4>
+            ))}
+            <div className="show-actual-chat-2" ref={messageContainer}>
+            </div>
+          </div>
+          <div className="show-chat-section-input">
+            <input className="show-merainput" value={messageinput} onChange={(e) => { setmessageinput(e.target.value) }} type="text" name="" placeholder="ENTER YOUR MESSAGE" />
+            <button className="show-merabutton" onClick={handleSendMessage}>send</button>
+          </div>
+        </div>
+      </div> */}
+
     </>
   );
 }

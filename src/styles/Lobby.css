@@ -101,8 +101,22 @@ form .header {
     color: white;
 }
 
-
-
 form label {
     color: white;
+}
+
+@media only screen and (max-width:622px) {
+    .main-lobby form {
+        width: 468px;
+    }
+}
+@media only screen and (max-width:497px) {
+    .main-lobby form {
+        width: 364px;
+    }
+}
+@media only screen and (max-width:378px) {
+    .main-lobby form {
+        width: 291px;
+    }
 }
