@@ -179,7 +179,7 @@ input:focus {
   /* justify-content: space-evenly; */
 }
 
-.merainput{
+.merainput {
   background-color: #1a1a1a;
   color: white;
   padding: 8px 8px;
@@ -256,9 +256,11 @@ input:focus {
   border-radius: 23px;
   transition: all .5s ease-in-out;
 }
-.crossimg{
+
+.crossimg {
   display: none;
 }
+
 .show-chat {
   background-color: #262625;
   position: absolute;
@@ -297,7 +299,8 @@ input:focus {
   .chat-section {
     display: none;
   }
-  .crossimg{
+
+  .crossimg {
     display: block;
     position: relative;
     top: -23px;
@@ -305,6 +308,7 @@ input:focus {
     height: 20px;
     width: 20px
   }
+
   .room {
     display: flex;
     justify-content: center;
@@ -332,6 +336,7 @@ input:focus {
     padding-top: 15px;
     padding-bottom: 5px;
   }
+
   .show-actual-chat {
     color: white;
     text-align: center;

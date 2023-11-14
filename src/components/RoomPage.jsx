@@ -12,14 +12,27 @@ import { UseSocket } from "../context/SocketProvider";
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from 'react-player';
 
+var configuration = {};
 
-let pc = new RTCPeerConnection({
-  iceServers: [
-    {
-      urls: "stun:stun.stunprotocol.org ",
-    },
-  ],
-});
+// for production
+(async () => {
+  const response = await fetch("https://rrturnserver.metered.live/api/v1/turn/credentials?apiKey=c6ff3a42c9063dc86cf2e8b90ff6e8c99b33");
+  const iceServers = await response.json();
+  configuration.iceServers = iceServers
+})();
+
+let pc = new RTCPeerConnection(
+
+  configuration
+  //   {
+  //   // iceServers: [  for development use 
+  //   //   {
+  //   //     urls: "stun:stun.stunprotocol.org ",
+  //   //   },
+  //   // ],
+
+  // }
+);
 
 export default function RoomPage() {
 
@@ -156,7 +169,7 @@ export default function RoomPage() {
 
   const handleshowchat = () => {
     const a = document.querySelector('.chat-section');
-    a.style.display='block'
+    a.style.display = 'block'
     if (a.classList.contains('chat-section')) {
       a.classList.remove('chat-section');
       a.classList.add('show-chat');
