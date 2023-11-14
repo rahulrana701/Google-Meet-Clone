@@ -13,8 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import ReactPlayer from 'react-player';
 
 var configuration = {};
-let pc; // Declare pc variable outside the block
-
+var pc;
 // for production
 (async () => {
   try {
@@ -22,14 +21,14 @@ let pc; // Declare pc variable outside the block
     const iceServers = await response.json();
     configuration.iceServers = iceServers;
 
-    pc = new RTCPeerConnection(configuration); // Assign value to pc inside the block
+    pc = new RTCPeerConnection(configuration);
 
   } catch (error) {
     console.error("Error fetching TURN server credentials:", error);
   }
 })();
 
-// let pc = new RTCPeerConnection(
+// var pc = new RTCPeerConnection(
 
 //   configuration
 //   //   {
