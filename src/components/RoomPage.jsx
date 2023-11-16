@@ -12,37 +12,38 @@ import { UseSocket } from "../context/SocketProvider";
 import { useEffect, useRef, useState } from "react";
 import ReactPlayer from 'react-player';
 
-const configuration = {};
+var configuration = {};
+let pc;
 
-// Fetch TURN server credentials asynchronously
 (async () => {
   try {
-    const response = await fetch("https://rrturnserver.metered.live/api/v1/turn/credentials?apiKey=c6ff3a42c9063dc86cf2e8b90ff6e8c99b33");
-    const iceServers = await response.json();
-    configuration.iceServers = iceServers;
+    const turnResponse = await fetch("https://rrturnserver.metered.live/api/v1/turn/credentials?apiKey=c6ff3a42c9063dc86cf2e8b90ff6e8c99b33");
+    const turnIceServers = await turnResponse.json();
+
+    const stunServers = [
+      { urls: "stun:stun.stunprotocol.org" },
+    ];
+
+    configuration.iceServers = [...turnIceServers.iceServers, ...stunServers];
+
+    pc = new RTCPeerConnection(configuration);
   } catch (error) {
-    console.error("Error fetching TURN server credentials:", error);
+    console.error("Error fetching ICE servers:", error);
   }
 })();
 
-// Add STUN server for development
-const developmentConfiguration = {
-  iceServers: [
-    {
-      urls: "stun:stun.stunprotocol.org",
-    },
-  ],
-};
+// let pc = new RTCPeerConnection(
 
-// Use the fetched TURN server credentials for production
-const productionConfiguration = {
-  iceServers: configuration.iceServers,
-};
+//   //   {
+//   //   // iceServers: [  for development use 
+//   //   //   {
+//   //   //     urls: "stun:stun.stunprotocol.org ",
+//   //   //   },
+//   //   // ],
 
-// Choose the appropriate configuration based on the environment
-const selectedConfiguration = process.env.NODE_ENV === 'production' ? productionConfiguration : developmentConfiguration;
+//   // }
+// );
 
-let pc = new RTCPeerConnection(selectedConfiguration);
 
 export default function RoomPage() {
 
