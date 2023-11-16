@@ -18,11 +18,12 @@ let pc;
 (async () => {
   try {
     const response = await fetch("https://rrturnserver.metered.live/api/v1/turn/credentials?apiKey=c6ff3a42c9063dc86cf2e8b90ff6e8c99b33");
+    if (!response.ok) {
+      throw new Error(`Failed to fetch TURN server credentials. Status: ${response.status}`);
+    }
     const iceServers = await response.json();
     configuration.iceServers = iceServers;
-
     pc = new RTCPeerConnection(configuration);
-
   } catch (error) {
     console.error("Error fetching TURN server credentials:", error);
   }
