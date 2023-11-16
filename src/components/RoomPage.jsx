@@ -17,18 +17,14 @@ let pc;
 
 (async () => {
   try {
-    const turnResponse = await fetch("https://rrturnserver.metered.live/api/v1/turn/credentials?apiKey=c6ff3a42c9063dc86cf2e8b90ff6e8c99b33");
-    const turnIceServers = await turnResponse.json();
-
-    const stunServers = [
-      { urls: "stun:stun.stunprotocol.org" },
-    ];
-
-    configuration.iceServers = [...turnIceServers.iceServers, ...stunServers];
+    const response = await fetch("https://rrturnserver.metered.live/api/v1/turn/credentials?apiKey=c6ff3a42c9063dc86cf2e8b90ff6e8c99b33");
+    const iceServers = await response.json();
+    configuration.iceServers = iceServers;
 
     pc = new RTCPeerConnection(configuration);
+
   } catch (error) {
-    console.error("Error fetching ICE servers:", error);
+    console.error("Error fetching TURN server credentials:", error);
   }
 })();
 
@@ -258,26 +254,31 @@ export default function RoomPage() {
   }, [roomsocket, participants]);
 
   useEffect(() => {
-    const handleicecandidates = async () => {
-      pc.onicecandidate = ({ candidate }) => {
-        roomsocket.emit("iceCandidate", { candidate });
-      }
+    if (pc) {
+      const handleicecandidates = async () => {
+        pc.onicecandidate = ({ candidate }) => {
+          if (candidate) {
+            roomsocket.emit("iceCandidate", { candidate });
+          }
+        };
 
-      if (mystream && mystream.getTracks().length > 0) {
-        mystream.getTracks().forEach((track) => {
-          pc.addTrack(track, mystream);
-        });
-      }
+        if (mystream && mystream.getTracks().length > 0) {
+          mystream.getTracks().forEach((track) => {
+            pc.addTrack(track, mystream);
+          });
+        }
 
-      try {
-        await pc.setLocalDescription(await pc.createOffer());
-        console.log({ aa: pc.localDescription });
-        roomsocket.emit("localDescription", { description: pc.localDescription });
-      } catch (err) {
-        console.log({ msg: err?.message });
+        try {
+          await pc.setLocalDescription(await pc.createOffer());
+          console.log({ aa: pc.localDescription });
+          roomsocket.emit("localDescription", { description: pc.localDescription });
+        } catch (err) {
+          console.log({ msg: err?.message });
+        }
       }
+      handleicecandidates();
     }
-    handleicecandidates();
+
   }, [mystream, roomsocket])
 
   useEffect(() => {
