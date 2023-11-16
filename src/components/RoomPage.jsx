@@ -353,7 +353,7 @@ export default function RoomPage() {
             {mystream && (
               <ReactPlayer
                 ref={myVideoRef}
-                url={mystream ? URL.createObjectURL(mystream) : null}
+                url={mystream}
                 playing={true}
                 onClick={toggleReactPlayerFullScreen}
               />
@@ -361,7 +361,7 @@ export default function RoomPage() {
             {remoteVideoStream && (
               <ReactPlayer
                 ref={myVideoRef2}
-                url={remoteVideoStream ? URL.createObjectURL(remoteVideoStream) : null}
+                url={remoteVideoStream}
                 playing={true}
                 onClick={toggleReactPlayerFullScreen2}
               />
