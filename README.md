@@ -5,7 +5,7 @@ Experience real-time video calls with peer-to-peer connections and seamless comm
 
 ## Screenshots
 
-![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/fd178801-c2fd-40ae-b4da-1108310116ea))
+![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/fd178801-c2fd-40ae-b4da-1108310116ea)
 ![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/df61a9f9-7adf-4bcb-af86-581a4419bbb9))
 ![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/ec71bb97-ab72-4b8f-a077-bf84c93217e6))
 ![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/96ea510d-5f9c-41ce-a2db-7e4ac5f7ff0d))
@@ -94,17 +94,17 @@ Access the application:
 
 ## Tech Used:
 
-    &bull; React
+  &bull; React
     
-    &bull; Express Js
+  &bull; Express Js
 
-    &bull; Javascript
+  &bull; Javascript
 
-    &bull; Webrtc
+  &bull; Webrtc
 
-    &bull; Websockets
+  &bull; Websockets
 
-    &bull; 
+  &bull; 
 
 Stay connected for updates and advancements!
 
