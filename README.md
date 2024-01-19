@@ -5,13 +5,15 @@ Experience real-time video calls with peer-to-peer connections and seamless comm
 
 ## Screenshots
 
-![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/fd178801-c2fd-40ae-b4da-1108310116ea)
-![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/df61a9f9-7adf-4bcb-af86-581a4419bbb9)
-![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/ec71bb97-ab72-4b8f-a077-bf84c93217e6)
-![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/96ea510d-5f9c-41ce-a2db-7e4ac5f7ff0d)
-![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/5d3ea8e3-dcd3-4b21-b145-62745cbf9212)
-![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/44e4b10a-c8d0-481e-84b8-e98bd10724a2)
-![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/5e5050ff-341e-45f1-805f-a1c522ec701e)
+<p align="center">
+  <img src="https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/fd178801-c2fd-40ae-b4da-1108310116ea" width="400" alt="App Screenshot">
+  <img src="https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/df61a9f9-7adf-4bcb-af86-581a4419bbb9" width="400" alt="App Screenshot">
+  <img src="https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/ec71bb97-ab72-4b8f-a077-bf84c93217e6" width="400" alt="App Screenshot">
+  <img src="https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/96ea510d-5f9c-41ce-a2db-7e4ac5f7ff0d" width="400" alt="App Screenshot">
+  <img src="https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/5d3ea8e3-dcd3-4b21-b145-62745cbf9212" width="400" alt="App Screenshot">
+  <img src="https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/44e4b10a-c8d0-481e-84b8-e98bd10724a2" width="400" alt="App Screenshot">
+  <img src="https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/5e5050ff-341e-45f1-805f-a1c522ec701e" width="400" alt="App Screenshot">
+</p>
 
 ## Features:
 
