@@ -110,7 +110,6 @@ Access the application:
 
   &bull; Websockets
 
-  &bull; 
 
 Stay connected for updates and advancements!
 
