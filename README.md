@@ -6,12 +6,12 @@ Experience real-time video calls with peer-to-peer connections and seamless comm
 ## Screenshots
 
 ![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/fd178801-c2fd-40ae-b4da-1108310116ea)
-![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/df61a9f9-7adf-4bcb-af86-581a4419bbb9))
-![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/ec71bb97-ab72-4b8f-a077-bf84c93217e6))
-![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/96ea510d-5f9c-41ce-a2db-7e4ac5f7ff0d))
-![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/5d3ea8e3-dcd3-4b21-b145-62745cbf9212))
-![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/44e4b10a-c8d0-481e-84b8-e98bd10724a2))
-![App Screenshot]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/5e5050ff-341e-45f1-805f-a1c522ec701e))
+![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/df61a9f9-7adf-4bcb-af86-581a4419bbb9)
+![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/ec71bb97-ab72-4b8f-a077-bf84c93217e6)
+![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/96ea510d-5f9c-41ce-a2db-7e4ac5f7ff0d)
+![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/5d3ea8e3-dcd3-4b21-b145-62745cbf9212)
+![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/44e4b10a-c8d0-481e-84b8-e98bd10724a2)
+![App Screenshot](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/5e5050ff-341e-45f1-805f-a1c522ec701e)
 
 ## Features:
 
@@ -19,11 +19,11 @@ Experience real-time video calls with peer-to-peer connections and seamless comm
 
 ### &bull;  Screen Sharing: Share your screen effortlessly for enhanced collaboration.
 
-![Desktop Screenshare]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/1a14f7b1-1360-4cc1-8cda-a3c9f67760a6))
+![Desktop Screenshare](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/1a14f7b1-1360-4cc1-8cda-a3c9f67760a6)
 
 ### &bull;  Chat: Communicate through text while on a call.
 
-![Mobile Chat]((https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/ef413ab2-1916-403e-82eb-00964c2334a4))
+![Mobile Chat](https://github.com/kunal-kushwaha/DSA-Bootcamp-Java/assets/123585591/ef413ab2-1916-403e-82eb-00964c2334a4)
 
 ### &bull;  Responsive Design: Works seamlessly across devices, from desktop to mobile.
 
